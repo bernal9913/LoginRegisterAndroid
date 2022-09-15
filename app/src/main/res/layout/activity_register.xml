@@ -7,7 +7,7 @@
     tools:context=".RegisterActivity">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tv_log"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/tv_registerLogo"
@@ -19,7 +19,7 @@
         app:layout_constraintVertical_bias="0.17000002" />
 
     <EditText
-        android:id="@+id/tf_loginName"
+        android:id="@+id/tf_regName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -37,10 +37,10 @@
         android:paddingBottom="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_log" />
 
     <EditText
-        android:id="@+id/tf_loginPass"
+        android:id="@+id/tf_registerPass"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -57,8 +57,9 @@
         android:paddingRight="10dp"
         android:paddingBottom="10dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tf_loginName" />
+        app:layout_constraintTop_toBottomOf="@+id/tf_regName" />
 
     <EditText
         android:id="@+id/tf_registerMail"
@@ -68,7 +69,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/input_bg"
-        android:drawableLeft="@drawable/ic_baseline_security"
+        android:drawableLeft="@drawable/ic_baseline_email"
         android:ems="10"
         android:hint="@string/tf_email"
         android:inputType="textEmailAddress"
@@ -78,8 +79,9 @@
         android:paddingRight="10dp"
         android:paddingBottom="10dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tf_loginPass" />
+        app:layout_constraintTop_toBottomOf="@+id/tf_registerRepass" />
 
     <EditText
         android:id="@+id/dp_birthDate"
@@ -122,7 +124,7 @@
         app:layout_constraintTop_toBottomOf="@+id/dp_birthDate" />
 
     <Button
-        android:id="@+id/btn_login"
+        android:id="@+id/btn_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -140,6 +142,26 @@
         android:text="@string/tv_alreadyAccount"
         app:layout_constraintEnd_toEndOf="@+id/tf_registerOrigin"
         app:layout_constraintStart_toStartOf="@+id/tf_registerOrigin"
-        app:layout_constraintTop_toBottomOf="@+id/btn_login" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_register" />
+
+    <EditText
+        android:id="@+id/tf_registerRepass"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/input_bg"
+        android:drawableLeft="@drawable/ic_baseline_security"
+        android:ems="10"
+        android:hint="Confirmar Contraseña"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:paddingStart="20dp"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/tf_regName"
+        app:layout_constraintStart_toStartOf="@+id/tf_registerPass"
+        app:layout_constraintTop_toBottomOf="@+id/tf_registerPass" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

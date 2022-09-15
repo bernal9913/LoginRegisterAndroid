@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Login</string>
+    <string name="app_name">Login y signup</string>
     <string name="btn_register">Registrarse</string>
     <string name="tf_user_name">Nombre de usuario</string>
     <string name="tf_password">Contraseña</string>
