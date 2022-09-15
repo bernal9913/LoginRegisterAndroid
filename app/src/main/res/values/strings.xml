@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Login</string>
+    <string name="btn_register">Registrarse</string>
+    <string name="tf_user_name">Nombre de usuario</string>
+    <string name="tf_password">Contraseña</string>
+    <string name="tf_email">Email</string>
+    <string name="tf_birthDate">Fecha de nacimiento</string>
+    <string name="tf_Nacionalidad">Nacionalidad</string>
+    <string name="tv_alreadyAccount">¿Ya tienes una cuenta pa?</string>
+    <string name="tv_registerLogo">Registro</string>
+    <string name="tv_loginLogo">Login</string>
+    <string name="btn_login">Login</string>
+    <string name="tv_urntregister">¿No tienes una cuenta pa?</string>
 </resources>
