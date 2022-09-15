@@ -11,4 +11,14 @@
     <string name="tv_loginLogo">Login</string>
     <string name="btn_login">Login</string>
     <string name="tv_urntregister">¿No tienes una cuenta pa?</string>
+    <string-array name="countries_array">
+        <item>México</item>
+        <item>Estados Unidos</item>
+        <item>Canada</item>
+        <item>Alemania</item>
+        <item>Francia</item>
+        <item>China</item>
+        <item>Uranus</item>
+        <item>Libano</item>
+    </string-array>
 </resources>
