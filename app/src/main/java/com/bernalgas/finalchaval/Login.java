@@ -11,6 +11,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class Login extends AppCompatActivity {
     EditText user, pass;
     Button login;
@@ -36,36 +40,42 @@ public class Login extends AppCompatActivity {
                             "Todos los campos de texto deben de tener información",
                             Toast.LENGTH_SHORT).show();
                 }else{
-                    //checkLoginDetails(authToken);
-                    //Boolean checkUserPass = db.checkUserPass(u,p);
-                    /*if(checkUserPass){
+                    LoginRequest loginRequest = new LoginRequest();
+                    loginRequest.setUsername(u);
+                    loginRequest.setPassword(p);
 
-                        checkLoginDetails(authToken);
-
-                        /*Toast.makeText(LoginActivty.this,
-                                "Loggeo exitoso",
-                                Toast.LENGTH_SHORT).show();
-                        */
-                    //Intent i = new Intent(getApplicationContext(), MainActivity.class);
-
-                    //startActivity(i);
-                    /*}else{
-                        Toast.makeText(LoginActivty.this,
-                                "Usuario o contraseña no coinciden",
-                                Toast.LENGTH_SHORT).show();
-
-                    }*/
                 }
             }
         });
         register.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick(View view) {
                 Intent i = new Intent(getApplicationContext(), Register.class);
                 startActivity(i);
             }
         });
     }
 
+    public void loginUser(LoginRequest loginRequest){
+        Call<LoginResponse> loginResponseCall = ApiClient.getService().loginUser(loginRequest);
+        loginResponseCall.enqueue(new Callback<LoginResponse>() {
+            @Override
+            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                if(response.isSuccessful()){
+                    LoginResponse loginResponse = response.body();
+                    startActivity(new Intent(Login.this, postLogin.class).putExtra("data", String.valueOf(loginResponse)));
+                    finish();
+                }else{
+                    String msg = "An error occurred please try again leiter";
+                    Toast.makeText(Login.this, msg, Toast.LENGTH_SHORT).show();
+                }
+            }
 
+            @Override
+            public void onFailure(Call<LoginResponse> call, Throwable t) {
+                String msg = t.getLocalizedMessage();
+                Toast.makeText(Login.this, msg, Toast.LENGTH_LONG).show();
+            }
+        });
+    }
 }
