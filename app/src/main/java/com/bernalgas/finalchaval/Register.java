@@ -6,6 +6,7 @@ import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,9 +14,16 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+//import com.google.volley.*;
 
 public class Register extends AppCompatActivity {
     EditText user, pass, repass, email, nation, date;
@@ -54,13 +62,31 @@ public class Register extends AppCompatActivity {
                             "Todos los campos deben estar llenos",
                             Toast.LENGTH_SHORT).show();
                 }else{
-                    RegisterRequest registerRequest = new RegisterRequest();
+                    /*RegisterRequest registerRequest = new RegisterRequest();
                     registerRequest.setUsername(u);
                     registerRequest.setPassword(p);
                     registerRequest.setEmail(e);
                     registerRequest.setPlaceOfBirth(n);
                     registerRequest.setBirthDate(d);
                     registerUser(registerRequest);
+                     */
+                    Retrofit retrofit = new Retrofit.Builder().baseUrl("https://kfreeze-api.herokuapp.com")
+                            .addConverterFactory(GsonConverterFactory.create()).build();
+                    OurRetrofit ourRetrofit = retrofit.create(OurRetrofit.class);
+                    OurDataSet ourDataSet = new OurDataSet(u,p,d,n,e);
+                    Call<OurDataSet> call = ourRetrofit.PostData(ourDataSet);
+                    call.enqueue(new Callback<OurDataSet>() {
+                        @Override
+                        public void onResponse(Call<OurDataSet> call, Response<OurDataSet> response) {
+                            String msgImon = response.body().getJson().getMsg();
+                            Toast.makeText(Register.this, msgImon, Toast.LENGTH_SHORT).show();
+                        }
+
+                        @Override
+                        public void onFailure(Call<OurDataSet> call, Throwable t) {
+                            Toast.makeText(Register.this, "Calaqueo rey", Toast.LENGTH_SHORT).show();
+                        }
+                    });
                 }
             }
         }
@@ -97,5 +123,32 @@ public class Register extends AppCompatActivity {
                 Toast.makeText(Register.this, msg, Toast.LENGTH_LONG).show();
             }
         });
+    }/*
+    public JSONObject register(String e, String u,String p,String d,String n){
+        JSONObject registerJson = null;
+        try {
+            JSONObject jObject = new JSONObject();
+            JSONObject pObject = new JSONObject();
+
+            jObject.put("user", u);
+            jObject.put("email", e);
+            jObject.put("password", p);
+            jObject.put("birthdate", d);
+            jObject.put("nationality", n);
+
+            registerJson = jObject;
+            Log.d("json", registerJson.toString());
+        }catch (JSONException ex){
+            ex.printStackTrace();
+        }
+        return registerJson;
     }
+    public void apiCall(JSONObject jsonObject){
+        String url = "https://kfreeze-api.herokuapp.com/users";
+        JsonObjectRequest
+                jsonObjectRequest = new JsonObjectRequest(
+                        Request.Method.POST,
+                url, jsonObject, new Response,Listener
+        )
+    }*/
 }
