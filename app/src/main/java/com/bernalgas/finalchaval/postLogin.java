@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 public class postLogin extends AppCompatActivity {
-    LoginResponse loginResponse;
+    //LoginResponse loginResponse;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -16,8 +16,8 @@ public class postLogin extends AppCompatActivity {
         Intent intent = getIntent();
         // https://www.youtube.com/watch?v=ApqOpiWfc5U
         if(intent.getExtras() != null){
-            loginResponse = (LoginResponse) intent.getSerializableExtra("data");
-            Log.e("TAG", "=====> " + loginResponse.getEmail());
+            //loginResponse = (LoginResponse) intent.getSerializableExtra("data");
+            //Log.e("TAG", "=====> " + loginResponse.getEmail());
         }
     }
 }
