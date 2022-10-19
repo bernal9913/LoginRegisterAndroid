@@ -3,13 +3,16 @@ package com.bernalgas.finalchaval;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ActivityOptions;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -37,6 +40,7 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 import java.util.Arrays;
+import java.util.Calendar;
 
 //import com.google.volley.*;
 
@@ -47,6 +51,7 @@ public class Register extends AppCompatActivity {
     // dbStopJumper db;
     Spinner nation1;
     TextView login;
+    DatePickerDialog picker;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +66,33 @@ public class Register extends AppCompatActivity {
         register = findViewById(R.id.btn_register);
         login = findViewById(R.id.tv_alreadyHaveAcc);
         //db = new dbStopJumper(this);
+        date.setInputType(InputType.TYPE_NULL);
+        date.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Calendar cldr = Calendar.getInstance();
+                int day = cldr.get(Calendar.DAY_OF_MONTH);
+                int month = cldr.get(Calendar.MONTH);
+                int year = cldr.get(Calendar.YEAR);
+                picker = new DatePickerDialog(Register.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        String str = dayOfMonth + "/" + (month+1) + "/" + year;
+                        String str1 = year + "-" + (month+1)+ "-"+ dayOfMonth;
+                        date.setText(str1);
+                    }
+                }, year, month, day);
+                picker.show();
+                /*btnGet = findViewById(R.id.button1);
+                btnGet.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String str = "Selected date = " + eText.getText();
+                        tvw.setText(str);
+                    }
+                });*/
+            }
+        });
         register.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
