@@ -1,13 +1,13 @@
 package com.bernalgas.finalchaval;
 
-public class registerUser {
+public class User {
     String user;
     String email;
     String password;
     String birthdate;
     String nationality;
 
-    public registerUser(String user, String email, String password, String birthdate, String nationality) {
+    public User(String user, String email, String password, String birthdate, String nationality) {
         this.user = user;
         this.email = email;
         this.password = password;

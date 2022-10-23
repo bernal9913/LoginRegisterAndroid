@@ -2,14 +2,12 @@ package com.bernalgas.finalchaval;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ActivityOptions;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.InputType;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -20,7 +18,6 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 /*
 import retrofit2.Call;
@@ -30,15 +27,11 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 */
 import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
-import java.time.Duration;
 import java.util.Arrays;
 import java.util.Calendar;
 
@@ -128,7 +121,7 @@ public class Register extends AppCompatActivity {
                     registerRequest.setEmail(e);
                     registerRequest.setPlaceOfBirth(n);
                     registerRequest.setBirthDate(d);
-                    registerUser(registerRequest);
+                    User(registerRequest);
                      */
                     /*Retrofit retrofit = new Retrofit.Builder().baseUrl("https://kfreeze-api.herokuapp.com")
                             .addConverterFactory(GsonConverterFactory.create()).build();
@@ -194,8 +187,8 @@ public class Register extends AppCompatActivity {
         });
     }
 /*
-    public void registerUser(RegisterRequest registerRequest){
-        Call<RegisterResponse> registerResponseCall = ApiClient.getService().registerUser(registerRequest);
+    public void User(RegisterRequest registerRequest){
+        Call<RegisterResponse> registerResponseCall = ApiClient.getService().User(registerRequest);
         registerResponseCall.enqueue(new Callback<RegisterResponse>() {
             @Override
             public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
@@ -286,7 +279,7 @@ private class API extends AsyncTask<String, String, String>
             String test ="{\n   \"user\" : \""+u+"\",\n   \"password\" : \""+p+"\",\n   \"email\" : \""+e+"\",\n   \"nationality\" : \""+n+"\",\n   \"birthdate\" : \""+d+"\"\n}";
             System.out.println(test);
 
-            registerUser ru = new registerUser(u,e,p,d,n);
+            User ru = new User(u,e,p,d,n);
             Gson g = new Gson();
             String testGston = g.toJson(ru);
             System.out.println(testGston);
@@ -331,6 +324,10 @@ private class API extends AsyncTask<String, String, String>
                 startActivity(i);
 
             }
+            if (respMsg.equals("Error registering user")){
+                Toast.makeText(Register.this, "Algo salio mal, pero no sabemos que", Toast.LENGTH_SHORT).show();
+            }
+
         }
         catch (Exception e)
         {

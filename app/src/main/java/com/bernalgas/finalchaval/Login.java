@@ -12,6 +12,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -160,7 +162,17 @@ public class Login extends AppCompatActivity {
             {
                 JSONObject json = new JSONObject(respuesta);
                 //resultado.setText(json.getString("msg"));
+                // response string
                 String respMsg = json.getString("msg");
+                // user data string
+                String usr = json.getString("user");
+
+                // parse string json to object user
+                User user = new Gson().fromJson(usr,User.class);
+
+                // check if all of this work its working
+                System.out.println(user.getEmail());
+                System.out.println(usr);
                 if(respMsg.equals("user founded")){
                     Toast.makeText(Login.this, "Bienvenido",Toast.LENGTH_LONG).show();
                     Intent i = new Intent(getApplicationContext(), postLogin.class);
