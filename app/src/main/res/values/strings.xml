@@ -11,6 +11,11 @@
     <string name="tv_loginLogo">Login</string>
     <string name="btn_login">Login</string>
     <string name="tv_urntregister">¿No tienes una cuenta pa?</string>
+    <string name="bien_venido">🤓Bienvenido🤓</string>
+    <string name="tv_pUsername">Username</string>
+    <string name="tv_pEmail">Email</string>
+    <string name="tv_pBirthdate">Birthdate</string>
+    <string name="tv_pNationality">Nationality</string>
     <string-array name="countries_array">
         <item>México</item>
         <item>Estados Unidos</item>

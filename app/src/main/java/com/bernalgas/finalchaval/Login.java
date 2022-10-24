@@ -34,7 +34,8 @@ public class Login extends AppCompatActivity {
     EditText user, pass;
     Button login;
     TextView register;
-    //dbStopJumper db;
+    // rest in sushon belico la base de datos stopJumper
+    // dbStopJumper db;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -176,6 +177,7 @@ public class Login extends AppCompatActivity {
                 if(respMsg.equals("user founded")){
                     Toast.makeText(Login.this, "Bienvenido",Toast.LENGTH_LONG).show();
                     Intent i = new Intent(getApplicationContext(), postLogin.class);
+                    i.putExtra("usr", usr);
                     startActivity(i);
 
                 }

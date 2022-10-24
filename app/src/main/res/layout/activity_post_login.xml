@@ -4,25 +4,79 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/kanagawa_bg"
     tools:context=".postLogin">
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/wp5960208" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="94dp"
-        android:text="Si jala este pedo"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:elevation="10dp"
+        android:text="@string/bien_venido"
         android:textColor="#FFFFFF"
         android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView2" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.121" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="416dp"
+        android:layout_height="715dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/wp5960208" />
+
+    <TextView
+        android:id="@+id/tv_pUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/tv_pUsername"
+        android:textColor="@color/bg_background"
+        app:layout_constraintEnd_toEndOf="@+id/textView"
+        app:layout_constraintStart_toStartOf="@+id/textView"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/tv_pEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/tv_pEmail"
+        android:textColor="@color/bg_background"
+        app:layout_constraintEnd_toEndOf="@+id/tv_pUsername"
+        app:layout_constraintStart_toStartOf="@+id/tv_pUsername"
+        app:layout_constraintTop_toBottomOf="@+id/tv_pUsername" />
+
+    <TextView
+        android:id="@+id/tv_pBirthdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/tv_pBirthdate"
+        android:textColor="@color/bg_background"
+        app:layout_constraintEnd_toEndOf="@+id/tv_pEmail"
+        app:layout_constraintStart_toStartOf="@+id/tv_pEmail"
+        app:layout_constraintTop_toBottomOf="@+id/tv_pEmail" />
+
+    <TextView
+        android:id="@+id/tv_pNationality"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/tv_pNationality"
+        android:textColor="@color/bg_background"
+        app:layout_constraintEnd_toEndOf="@+id/tv_pBirthdate"
+        app:layout_constraintStart_toStartOf="@+id/tv_pBirthdate"
+        app:layout_constraintTop_toBottomOf="@+id/tv_pBirthdate" />
+    <!--
+    TODO: username, email, birthdate and nationality
+    -->
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,26 +1,26 @@
 package com.bernalgas.finalchaval;
 
 public class User {
-    String user;
+    String username;
     String email;
     String password;
     String birthdate;
     String nationality;
 
     public User(String user, String email, String password, String birthdate, String nationality) {
-        this.user = user;
+        this.username = user;
         this.email = email;
         this.password = password;
         this.birthdate = birthdate;
         this.nationality = nationality;
     }
 
-    public String getUser() {
-        return user;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUser(String user) {
-        this.user = user;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getEmail() {
