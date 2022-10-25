@@ -283,7 +283,8 @@ private class API extends AsyncTask<String, String, String>
             Gson g = new Gson();
             String testGston = g.toJson(ru);
             System.out.println(testGston);
-            payload = testGston;
+            //payload = testGston;
+            payload = test;
             try (OutputStream os = conn.getOutputStream())
             {
                 byte[] input = payload.getBytes(StandardCharsets.UTF_8);
