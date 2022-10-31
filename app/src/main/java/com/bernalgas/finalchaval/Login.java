@@ -175,7 +175,7 @@ public class Login extends AppCompatActivity {
                 System.out.println(user.getEmail());
                 System.out.println(usr);
                 if(respMsg.equals("user founded")){
-                    Toast.makeText(Login.this, "Bienvenido",Toast.LENGTH_LONG).show();
+                    Toast.makeText(Login.this, "Bienvenido",Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(getApplicationContext(), postLogin.class);
                     i.putExtra("usr", usr);
                     startActivity(i);

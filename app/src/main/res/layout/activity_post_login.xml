@@ -76,6 +76,33 @@
         app:layout_constraintEnd_toEndOf="@+id/tv_pBirthdate"
         app:layout_constraintStart_toStartOf="@+id/tv_pBirthdate"
         app:layout_constraintTop_toBottomOf="@+id/tv_pBirthdate" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="36dp"
+        android:clickable="true"
+        android:foregroundTint="@color/bg_background"
+        android:tint="#FFFFFF"
+        app:backgroundTint="@color/ic_logo_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:rippleColor="@color/bg_background"
+        app:srcCompat="@drawable/ic_logout" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_notification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="8dp"
+        android:clickable="true"
+        app:backgroundTint="@color/ic_logo_background"
+        app:layout_constraintBottom_toTopOf="@+id/fab_logout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_notificatiobn" />
     <!--
     TODO: username, email, birthdate and nationality
     -->
