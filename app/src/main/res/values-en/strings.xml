@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="btn_register">Sign up</string>
+    <string name="tf_user_name">Username</string>
+    <string name="tf_password">Password</string>
+    <string name="tf_email">Email</string>
+    <string name="tf_birthDate">Birth date</string>
+    <string name="tf_Nacionalidad">Place of birth</string>
+    <string name="tv_alreadyAccount">Are you already register?</string>
+    <string name="tv_registerLogo">Sign up</string>
+    <string name="tv_loginLogo">Log in</string>
+    <string name="btn_login">Log in</string>
+    <string name="tv_urntregister">You don\'t have an account?</string>
+    <string name="bien_venido">Welcome</string>
+    <string name="cb_logged">Remember session</string>
+</resources>

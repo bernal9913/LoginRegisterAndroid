@@ -12,6 +12,7 @@ import android.app.PendingIntent;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -36,6 +37,8 @@ public class postLogin extends AppCompatActivity {
     FloatingActionButton noti,logout;
     NotificationManagerCompat notificationManagerCompat;
     Notification notification;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +48,8 @@ public class postLogin extends AppCompatActivity {
         Intent intent = getIntent();
         String usr = intent.getStringExtra("usr");
         System.out.println("postlogin");
+        sharedPreferences = this.getSharedPreferences("sessions",Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
         //System.out.println(usr);
 
         // parsing json string to user object
@@ -71,11 +76,17 @@ public class postLogin extends AppCompatActivity {
             public void onClick(View v) {
                 String msg = "Adios " + user.getUsername() + ", fue un gusto verte";
                 Toast.makeText(postLogin.this, msg, Toast.LENGTH_SHORT).show();
+
+                editor.putString("username", "");
+                editor.putString("email", "");
+                editor.putString("password","");
+                editor.putString("birthdate","");
+                editor.putString("nationality","");
+                editor.putBoolean("CHECKED", false);
+                editor.commit();
                 finish();
             }
         });
-
-        // TODO also eventually make it work the notification button
 
         String tittle = "Titulo belico de notificacion";
         String subject = "sujeto de la noti";
@@ -88,7 +99,6 @@ public class postLogin extends AppCompatActivity {
                 //notificationManagerCompat.notify(1, notification);
 
                 createNotification();
-                // TODO custom notification sound
             }
         });
 

@@ -2,12 +2,15 @@ package com.bernalgas.finalchaval;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -34,6 +37,11 @@ public class Login extends AppCompatActivity {
     EditText user, pass;
     Button login;
     TextView register;
+    CheckBox sesion;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
+    String ENDPOINT = "https://kfreeze-api.herokuapp.com/log_user";
+
     // rest in sushon belico la base de datos stopJumper
     // dbStopJumper db;
     @Override
@@ -44,6 +52,17 @@ public class Login extends AppCompatActivity {
         pass = findViewById(R.id.tf_registerPass);
         login = findViewById(R.id.btn_register);
         register = findViewById(R.id.tv_dontHaveAcc);
+        sesion = findViewById(R.id.cb_session);
+        sharedPreferences = this.getSharedPreferences("sessions",Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+        //Boolean ssnLogeada = revisarSesion();
+        if(revisarSesion()){
+            String[] creds = {sharedPreferences.getString("username",""),
+                    sharedPreferences.getString("password",""), ENDPOINT};
+            API api = new API();
+            api.execute(creds);
+        }
+
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,12 +78,12 @@ public class Login extends AppCompatActivity {
                     //LoginRequest loginRequest = new LoginRequest();
                     //loginRequest.setUsername(u);
                     //loginRequest.setPassword(p);
-                    String endpoint = "https://kfreeze-api.herokuapp.com/log_user";
+                    //String endpoint = "https://kfreeze-api.herokuapp.com/log_user";
 
-                    String[] credenciales = {u, p, endpoint};
+                    String[] credenciales = {u, p, ENDPOINT};
                     System.out.println(u);
                     System.out.println(p);
-                    System.out.println(endpoint);
+                    System.out.println(ENDPOINT);
                     System.out.println(Arrays.toString(credenciales));
                     API api = new API();
                     api.execute(credenciales);
@@ -79,31 +98,12 @@ public class Login extends AppCompatActivity {
             }
         });
     }
-/*
-    public void loginUser(LoginRequest loginRequest){
-        Call<LoginResponse> loginResponseCall = ApiClient.getService().loginUser(loginRequest);
-        loginResponseCall.enqueue(new Callback<LoginResponse>() {
-            @Override
-            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                if(response.isSuccessful()){
-                    LoginResponse loginResponse = response.body();
-                    startActivity(new Intent(Login.this, postLogin.class).putExtra("data", String.valueOf(loginResponse)));
-                    finish();
-                }else{
-                    String msg = "An error occurred please try again leiter";
-                    Toast.makeText(Login.this, msg, Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<LoginResponse> call, Throwable t) {
-                String msg = t.getLocalizedMessage();
-                Toast.makeText(Login.this, msg, Toast.LENGTH_LONG).show();
-            }
-        });
+    private boolean revisarSesion(){
+        boolean ssn = this.sharedPreferences.getBoolean("CHECKED",false);
+        return ssn;
     }
 
- */
+
 
     private class API extends AsyncTask<String, String, String>
     {
@@ -174,9 +174,24 @@ public class Login extends AppCompatActivity {
                 // check if all of this work its working
                 System.out.println(user.getEmail());
                 System.out.println(usr);
+                //SharedPreferences sharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
+                //SharedPreferences.Editor myEdit = sharedPreferences.edit();
+
                 if(respMsg.equals("user founded")){
                     Toast.makeText(Login.this, "Bienvenido",Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(getApplicationContext(), postLogin.class);
+
+                    if (sesion.isChecked()){
+                        editor.putBoolean("CHECKED", true);
+                    }else{
+                        editor.putBoolean("CHECKED", false);
+                    }
+                    editor.putString("username", user.getUsername());
+                    editor.putString("email", user.getEmail());
+                    editor.putString("password", user.getPassword());
+                    editor.putString("birthdate", user.getBirthdate());
+                    editor.putString("nationality", user.getNationality());
+                    editor.apply();
                     i.putExtra("usr", usr);
                     startActivity(i);
 
