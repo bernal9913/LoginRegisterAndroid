@@ -8,15 +8,36 @@
     <string name="tf_Nacionalidad">Nacionalidad</string>
     <string name="tv_alreadyAccount">¿Ya tienes una cuenta pa?</string>
     <string name="tv_registerLogo">Registro</string>
-    <string name="tv_loginLogo">Login</string>
-    <string name="btn_login">Login</string>
+    <string name="tv_loginLogo">Iniciar sesión</string>
+    <string name="btn_login">Iniciar sesión</string>
     <string name="tv_urntregister">¿No tienes una cuenta pa?</string>
     <string name="bien_venido">🤓Bienvenido🤓</string>
     <string name="tv_pUsername" translatable="false">Username</string>
     <string name="tv_pEmail" translatable="false">Email</string>
     <string name="tv_pBirthdate" translatable="false">Birthdate</string>
     <string name="tv_pNationality" translatable="false">Nationality</string>
+    <string name="tv_pUserType" translatable="false">UserType</string>
     <string name="cb_logged">Recordar sesión</string>
+    <string name="fab_loggout">Cerrar sesión</string>
+    <string name="fab_noti">Enviar notificación</string>
+    <string name="fab_admin">Panel de administrador</string>
+    <string name="fab_mod">Modificar</string>
+    <string name="fab_menu">Menu</string>
+    <string name="tv_mouseLogo">Crear admin</string>
+    <string name="tf_secKey">Clave de seguridad</string>
+    <string name="btn_mouse">Dar poderes</string>
+    <string name="tv_mouseAd">Usar bajo su propio riesgo</string>
+    <string name="btn_demote">Quitar poderes</string>
+    <string name="tv_demoteLogo">Regresar a la normalidad</string>
+    <string name="tv_demoteAd">Chisme de porque bajo de rango ASAP</string>
+    <string name="tv_removeLogo">Eliminar usuario</string>
+    <string name="btn_eliminar">Eliminar</string>
+    <string name="btn_eliminarConf">¿Estas seguro que deseas eliminar?</string>
+    <string name="tf_confirmEmail">Confirmar Email</string>
+    <string name="tv_modLogo">Cambiar contraseña</string>
+    <string name="btn_mod">Cambiar</string>
+
+
 
     <string-array name="countries_array">
         <item>Mexico</item>

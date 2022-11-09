@@ -4,14 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Login">
+    tools:context=".MousekeTools">
 
+
+    <Button
+        android:id="@+id/btn_changePassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/btn_bg"
+        android:backgroundTint="@color/morado_lp"
+        android:text="@string/btn_demote"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_mousePromote" />
 
     <TextView
         android:id="@+id/tv_modUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/tv_loginLogo"
+        android:text="@string/tv_mouseLogo"
         android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -29,7 +42,7 @@
         android:background="@drawable/input_bg"
         android:drawableLeft="@drawable/ic_person"
         android:ems="10"
-        android:hint="@string/tf_user_name"
+        android:hint="@string/tf_email"
         android:inputType="textPersonName"
         android:minHeight="48dp"
         android:paddingLeft="20dp"
@@ -50,7 +63,7 @@
         android:background="@drawable/input_bg"
         android:drawableLeft="@drawable/ic_baseline_security"
         android:ems="10"
-        android:hint="@string/tf_password"
+        android:hint="@string/tf_secKey"
         android:inputType="textPassword"
         android:minHeight="48dp"
         android:paddingLeft="20dp"
@@ -62,38 +75,26 @@
         app:layout_constraintTop_toBottomOf="@+id/tf_chooseEmail" />
 
     <Button
-        android:id="@+id/btn_mouseBtn"
+        android:id="@+id/btn_mousePromote"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="140dp"
         android:background="@drawable/btn_bg"
-        android:text="@string/btn_login"
         android:backgroundTint="@color/morado_lp"
+        android:text="@string/btn_mouse"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tf_mousePassword" />
 
     <TextView
-        android:id="@+id/tv_dontHaveAcc"
+        android:id="@+id/tv_demoteAD"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="@string/tv_urntregister"
-        app:layout_constraintEnd_toEndOf="@+id/tf_mousePassword"
-        app:layout_constraintStart_toStartOf="@+id/tf_mousePassword"
-        app:layout_constraintTop_toBottomOf="@+id/btn_mouseBtn" />
+        android:layout_marginTop="40dp"
+        android:text="@string/tv_mouseAd"
+        app:layout_constraintTop_toBottomOf="@+id/tf_mousePassword"
+        tools:layout_editor_absoluteX="123dp" />
 
-    <CheckBox
-        android:id="@+id/cb_session"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:buttonTint="@color/morado_lp"
-        android:checked="true"
-        android:text="@string/cb_logged"
-        app:layout_constraintEnd_toEndOf="@+id/tf_mousePassword"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/tf_mousePassword"
-        app:layout_constraintTop_toBottomOf="@+id/tf_mousePassword" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

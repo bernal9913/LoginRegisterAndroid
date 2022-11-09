@@ -7,31 +7,36 @@
     android:background="@color/kanagawa_bg"
     tools:context=".postLogin">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:elevation="10dp"
-        android:text="@string/bien_venido"
-        android:textColor="#FFFFFF"
-        android:textSize="34sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.121" />
-
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="416dp"
         android:layout_height="715dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/wp5960208" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="24dp"
+        android:elevation="10dp"
+        android:outlineAmbientShadowColor="#200808"
+        android:outlineProvider="background"
+        android:outlineSpotShadowColor="#000000"
+        android:text="@string/bien_venido"
+        android:textColor="#FFFFFF"
+        android:textIsSelectable="false"
+        android:textSize="34sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.121" />
 
     <TextView
         android:id="@+id/tv_pUsername"
@@ -77,17 +82,29 @@
         app:layout_constraintStart_toStartOf="@+id/tv_pBirthdate"
         app:layout_constraintTop_toBottomOf="@+id/tv_pBirthdate" />
 
+    <TextView
+        android:id="@+id/tv_pUserType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/tv_pUserType"
+        android:textColor="@color/bg_background"
+        app:layout_constraintEnd_toEndOf="@+id/tv_pNationality"
+        app:layout_constraintStart_toStartOf="@+id/tv_pNationality"
+        app:layout_constraintTop_toBottomOf="@+id/tv_pNationality" />
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="36dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="12dp"
         android:clickable="true"
         android:foregroundTint="@color/bg_background"
         android:tint="#FFFFFF"
-        app:backgroundTint="@color/ic_logo_background"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:visibility="invisible"
+        app:backgroundTint="@color/morado_lp"
+        app:layout_constraintBottom_toTopOf="@+id/fab_menu"
         app:layout_constraintEnd_toEndOf="parent"
         app:rippleColor="@color/bg_background"
         app:srcCompat="@drawable/ic_logout" />
@@ -96,13 +113,66 @@
         android:id="@+id/fab_notification"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="12dp"
         android:clickable="true"
-        app:backgroundTint="@color/ic_logo_background"
+        android:visibility="invisible"
+        app:backgroundTint="@color/rojo_lp"
         app:layout_constraintBottom_toTopOf="@+id/fab_logout"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_notificatiobn" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_edit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="24dp"
+        android:clickable="true"
+        android:visibility="invisible"
+        app:backgroundTint="@color/rojo_lp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/fab_menu"
+        app:srcCompat="@drawable/ic_edit" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="24dp"
+        android:clickable="true"
+        android:visibility="invisible"
+        app:backgroundTint="@color/rojo_lp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/fab_edit"
+        app:srcCompat="@drawable/ic_delete" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_admin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="24dp"
+        android:clickable="true"
+        android:visibility="invisible"
+        app:backgroundTint="@color/rojo_lp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/fab_delete"
+        app:srcCompat="@drawable/ic_admin" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_menu"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:clickable="true"
+        app:backgroundTint="@color/morado_lp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/ic_menu" />
+
     <!--
     TODO: username, email, birthdate and nationality
     -->

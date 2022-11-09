@@ -2,19 +2,16 @@ package com.bernalgas.finalchaval;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationCompatExtras;
 import androidx.core.app.NotificationManagerCompat;
+import androidx.core.content.ContextCompat;
 
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -23,7 +20,6 @@ import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,12 +29,13 @@ import com.google.gson.Gson;
 
 public class postLogin extends AppCompatActivity {
     //LoginResponse loginResponse;
-    TextView u, e, n, b;
-    FloatingActionButton noti,logout;
+    TextView u, e, n, b, ut;
+    FloatingActionButton noti,logout,edit, delete, admin, menu;
     NotificationManagerCompat notificationManagerCompat;
     Notification notification;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
+    Boolean flag = true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,22 +52,61 @@ public class postLogin extends AppCompatActivity {
         // parsing json string to user object
         User user = new Gson().fromJson(usr,User.class);
         System.out.println(user.getEmail());
+        startEverything(user);
+        //boolean flag = true;
+        menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(flag){
+                    menu.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_close));
+                    flag = false;
+                    if (user.getUserType().contains("Admin")){
+                        noti.setVisibility(View.VISIBLE);
+                        edit.setVisibility(View.VISIBLE);
+                        delete.setVisibility(View.VISIBLE);
+                        admin.setVisibility(View.VISIBLE);
+                        logout.setVisibility(View.VISIBLE);
+                    }else if(user.getUserType().contains("Regular")){
+                        logout.setVisibility(View.VISIBLE);
+                    }
+                }else if(!flag){
+                    menu.setImageDrawable(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ic_menu));
+                    flag = true;
+                    if (user.getUserType().contains("Admin")){
+                        noti.setVisibility(View.INVISIBLE);
+                        edit.setVisibility(View.INVISIBLE);
+                        delete.setVisibility(View.INVISIBLE);
+                        admin.setVisibility(View.INVISIBLE);
+                        logout.setVisibility(View.INVISIBLE);
+                    }else if(user.getUserType().contains("Regular")){
+                        logout.setVisibility(View.INVISIBLE);
+                    }
+                }
+            }
+        });
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), DeleteUser.class);
+                startActivity(i);
+            }
+        });
+        admin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), MousekeTools.class);
+                startActivity(i);
+            }
+        });
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), ModUser.class);
+                startActivity(i);
+            }
+        });
 
-        u = findViewById(R.id.tv_pUsername);
-        e = findViewById(R.id.tv_pEmail);
-        n = findViewById(R.id.tv_pNationality);
-        b = findViewById(R.id.tv_pBirthdate);
 
-        // floating action button
-        noti = findViewById(R.id.fab_notification);
-        logout = findViewById(R.id.fab_logout);
-
-        u.setText(user.getUsername());
-        e.setText(user.getEmail());
-        n.setText(user.getNationality());
-        b.setText(user.getBirthdate());
-
-        // TODO eventually make it work the logout
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -82,6 +118,7 @@ public class postLogin extends AppCompatActivity {
                 editor.putString("password","");
                 editor.putString("birthdate","");
                 editor.putString("nationality","");
+                editor.putString("userType", "");
                 editor.putBoolean("CHECKED", false);
                 editor.commit();
                 finish();
@@ -103,7 +140,28 @@ public class postLogin extends AppCompatActivity {
         });
 
         };
+    private void startEverything(User user){
 
+        u = findViewById(R.id.tv_pUsername);
+        e = findViewById(R.id.tv_pEmail);
+        n = findViewById(R.id.tv_pNationality);
+        b = findViewById(R.id.tv_pBirthdate);
+        ut = findViewById(R.id.tv_pUserType);
+
+        // floating action button
+        menu = findViewById(R.id.fab_menu);
+        noti = findViewById(R.id.fab_notification);
+        logout = findViewById(R.id.fab_logout);
+        edit = findViewById(R.id.fab_edit);
+        delete = findViewById(R.id.fab_delete);
+        admin = findViewById(R.id.fab_admin);
+
+        u.setText(user.getUsername());
+        e.setText(user.getEmail());
+        n.setText(user.getNationality());
+        b.setText(user.getBirthdate());
+        ut.setText(user.getUserType());
+    }
     private void createNotification(){
         String id = "My_channel_id_01";
         Bitmap DONGOYO06 = ((BitmapDrawable)getDrawable(R.drawable.gosh_maquila)).getBitmap();

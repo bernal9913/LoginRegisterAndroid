@@ -1,18 +1,30 @@
 package com.bernalgas.finalchaval;
 
 public class User {
+    public User(String username, String email, String password, String birthdate, String nationality) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.birthdate = birthdate;
+        this.nationality = nationality;
+    }
+
     String username;
     String email;
     String password;
     String birthdate;
     String nationality;
+    String userType;
 
-    public User(String user, String email, String password, String birthdate, String nationality) {
+
+
+    public User(String user, String email, String password, String birthdate, String nationality, String userType) {
         this.username = user;
         this.email = email;
         this.password = password;
         this.birthdate = birthdate;
         this.nationality = nationality;
+        this.userType = userType;
     }
 
     public String getUsername() {
@@ -53,5 +65,13 @@ public class User {
 
     public void setNationality(String nationality) {
         this.nationality = nationality;
+    }
+
+    public String getUserType() {
+        return userType;
+    }
+
+    public void setUserType(String userType) {
+        this.userType = userType;
     }
 }

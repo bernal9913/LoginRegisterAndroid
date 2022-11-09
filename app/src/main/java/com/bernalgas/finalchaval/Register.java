@@ -50,13 +50,13 @@ public class Register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         //https://www.youtube.com/watch?v=7aRn2Ch7Cs0
-        user = findViewById(R.id.tf_regName);
-        pass = findViewById(R.id.tf_registerPass);
+        user = findViewById(R.id.tf_chooseEmail);
+        pass = findViewById(R.id.tf_mousePassword);
         repass = findViewById(R.id.tf_registerRepass);
         email = findViewById(R.id.tf_registerMail);
         nation1 = findViewById(R.id.tf_registerOrigin1);
         date = findViewById(R.id.dp_birthDate);
-        register = findViewById(R.id.btn_register);
+        register = findViewById(R.id.btn_mouseBtn);
         login = findViewById(R.id.tv_alreadyHaveAcc);
         //db = new dbStopJumper(this);
         date.setInputType(InputType.TYPE_NULL);
@@ -327,6 +327,14 @@ private class API extends AsyncTask<String, String, String>
             }
             if (respMsg.equals("Error registering user")){
                 Toast.makeText(Register.this, "Algo salio mal, pero no sabemos que", Toast.LENGTH_SHORT).show();
+            }
+
+            if (respMsg.equals("User already registered")){
+                Toast.makeText(Register.this, "El usuario ya existe", Toast.LENGTH_SHORT).show();
+            }
+
+            if (respMsg.equals("Email already registered")){
+                Toast.makeText(Register.this, "El email ya existe", Toast.LENGTH_SHORT).show();
             }
 
         }

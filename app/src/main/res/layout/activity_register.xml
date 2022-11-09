@@ -7,7 +7,7 @@
     tools:context=".Register">
 
     <TextView
-        android:id="@+id/tv_log"
+        android:id="@+id/tv_modUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -20,7 +20,7 @@
         app:layout_constraintVertical_bias="0.17000002" />
 
     <EditText
-        android:id="@+id/tf_regName"
+        android:id="@+id/tf_chooseEmail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -38,10 +38,10 @@
         android:paddingBottom="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_log" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_modUser" />
 
     <EditText
-        android:id="@+id/tf_registerPass"
+        android:id="@+id/tf_mousePassword"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -60,7 +60,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tf_regName" />
+        app:layout_constraintTop_toBottomOf="@+id/tf_chooseEmail" />
 
     <EditText
         android:id="@+id/tf_registerMail"
@@ -126,7 +126,7 @@
 -->
 
     <Button
-        android:id="@+id/btn_register"
+        android:id="@+id/btn_mouseBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -144,7 +144,7 @@
         android:text="@string/tv_alreadyAccount"
         app:layout_constraintEnd_toEndOf="@+id/tf_registerOrigin1"
         app:layout_constraintStart_toStartOf="@+id/tf_registerOrigin1"
-        app:layout_constraintTop_toBottomOf="@+id/btn_register" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_mouseBtn" />
 
     <EditText
         android:id="@+id/tf_registerRepass"
@@ -162,9 +162,9 @@
         android:paddingTop="10dp"
         android:paddingRight="10dp"
         android:paddingBottom="10dp"
-        app:layout_constraintEnd_toEndOf="@+id/tf_regName"
-        app:layout_constraintStart_toStartOf="@+id/tf_registerPass"
-        app:layout_constraintTop_toBottomOf="@+id/tf_registerPass" />
+        app:layout_constraintEnd_toEndOf="@+id/tf_chooseEmail"
+        app:layout_constraintStart_toStartOf="@+id/tf_mousePassword"
+        app:layout_constraintTop_toBottomOf="@+id/tf_mousePassword" />
 
     <Spinner
         android:id="@+id/tf_registerOrigin1"

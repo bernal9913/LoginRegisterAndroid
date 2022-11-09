@@ -48,9 +48,9 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        user = findViewById(R.id.tf_regName);
-        pass = findViewById(R.id.tf_registerPass);
-        login = findViewById(R.id.btn_register);
+        user = findViewById(R.id.tf_chooseEmail);
+        pass = findViewById(R.id.tf_mousePassword);
+        login = findViewById(R.id.btn_mouseBtn);
         register = findViewById(R.id.tv_dontHaveAcc);
         sesion = findViewById(R.id.cb_session);
         sharedPreferences = this.getSharedPreferences("sessions",Context.MODE_PRIVATE);
@@ -165,19 +165,23 @@ public class Login extends AppCompatActivity {
                 //resultado.setText(json.getString("msg"));
                 // response string
                 String respMsg = json.getString("msg");
-                // user data string
-                String usr = json.getString("user");
+                System.out.println(respMsg);
 
-                // parse string json to object user
-                User user = new Gson().fromJson(usr,User.class);
+                if(respMsg.equals("Error: user not founded")){
+                    Toast.makeText(Login.this, "Usuario o contraseña invalidos", Toast.LENGTH_LONG).show();
+                }else if(respMsg.equals("user founded")){
+                    // user data string
+                    String usr = json.getString("user");
 
-                // check if all of this work its working
-                System.out.println(user.getEmail());
-                System.out.println(usr);
-                //SharedPreferences sharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
-                //SharedPreferences.Editor myEdit = sharedPreferences.edit();
+                    // parse string json to object user
+                    User user = new Gson().fromJson(usr,User.class);
 
-                if(respMsg.equals("user founded")){
+                    // check if all of this work its working
+                    System.out.println(user.getEmail());
+                    System.out.println(user.getUserType());
+                    System.out.println(usr);
+                    //SharedPreferences sharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
+                    //SharedPreferences.Editor myEdit = sharedPreferences.edit();
                     Toast.makeText(Login.this, "Bienvenido",Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(getApplicationContext(), postLogin.class);
 
@@ -191,14 +195,14 @@ public class Login extends AppCompatActivity {
                     editor.putString("password", user.getPassword());
                     editor.putString("birthdate", user.getBirthdate());
                     editor.putString("nationality", user.getNationality());
+                    editor.putString("userType", user.getUserType());
                     editor.apply();
                     i.putExtra("usr", usr);
                     startActivity(i);
 
                 }
-                if(respMsg.equals("Error: user not founded")){
-                    Toast.makeText(Login.this, "Usuario o contraseña invalidos", Toast.LENGTH_LONG).show();
-                }
+
+
             }
             catch (Exception e)
             {

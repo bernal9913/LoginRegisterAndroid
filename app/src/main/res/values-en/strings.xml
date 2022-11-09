@@ -13,4 +13,22 @@
     <string name="tv_urntregister">You don\'t have an account?</string>
     <string name="bien_venido">Welcome</string>
     <string name="cb_logged">Remember session</string>
+    <string name="fab_loggout">Log out</string>
+    <string name="fab_noti">Send notification</string>
+    <string name="fab_admin">Administration panel</string>
+    <string name="fab_mod">Make a modification</string>
+    <string name="fab_menu">Menu</string>
+    <string name="tv_mouseLogo">Upgrade user</string>
+    <string name="tf_secKey">Security key</string>
+    <string name="btn_mouse">Give the power</string>
+    <string name="tv_mouseAd">Use this with careful</string>
+    <string name="btn_demote">Remove admin</string>
+    <string name="tv_demoteLogo">"Remove admin "</string>
+    <string name="tv_demoteAd">Chismecito ASAP pls</string>
+    <string name="tv_removeLogo">Delete user</string>
+    <string name="btn_eliminar">Delete</string>
+    <string name="btn_eliminarConf">Are you sure about that?</string>
+    <string name="tf_confirmEmail">Confirm Email</string>
+    <string name="tv_modLogo">Change password</string>
+    <string name="btn_mod">Change</string>
 </resources>
