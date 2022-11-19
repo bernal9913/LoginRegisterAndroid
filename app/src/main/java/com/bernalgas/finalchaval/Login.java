@@ -1,7 +1,9 @@
 package com.bernalgas.finalchaval;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -124,6 +126,8 @@ public class Login extends AppCompatActivity {
                 conn.setDoOutput(true);
                 String payload = "{\n   \"user\" : \""+username+"\",\n   \"password\" : \""+password+"\"\n}";
                 //String vv = "{\n \"user\":\""+u+",\n \"password\":\""+p+",\"\n \"email\":\n \""+e+",\"\n                    \n}";
+
+
                 JSONObject json = new JSONObject();
                 json.put("user", username);
                 json.put("password", password);
@@ -172,17 +176,14 @@ public class Login extends AppCompatActivity {
                 }else if(respMsg.equals("user founded")){
                     // user data string
                     String usr = json.getString("user");
-
-                    // parse string json to object user
                     User user = new Gson().fromJson(usr,User.class);
-
-                    // check if all of this work its working
                     System.out.println(user.getEmail());
                     System.out.println(user.getUserType());
+                    System.out.println(user.getFirstName());
+                    System.out.println(user.getLastName());
+                    String nf = "Contacte al admin para registrar nuevos datos";
                     System.out.println(usr);
-                    //SharedPreferences sharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
-                    //SharedPreferences.Editor myEdit = sharedPreferences.edit();
-                    Toast.makeText(Login.this, "Bienvenido",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Login.this, "Bienvenido: " + user.getUsername(),Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(getApplicationContext(), postLogin.class);
 
                     if (sesion.isChecked()){
@@ -196,13 +197,23 @@ public class Login extends AppCompatActivity {
                     editor.putString("birthdate", user.getBirthdate());
                     editor.putString("nationality", user.getNationality());
                     editor.putString("userType", user.getUserType());
+
+                    if(user.getFirstName().equals("")){
+                        editor.putString("firstName", nf);
+                    }else{
+                        editor.putString("firstName", user.getFirstName());
+                    }
+
+                    if(user.getLastName().equals("")){
+                        editor.putString("lastName", nf);
+                    }else{
+                        editor.putString("lastName", user.getFirstName());
+                    }
+                    //editor.putString("lastName", user.getLastName());
                     editor.apply();
                     i.putExtra("usr", usr);
                     startActivity(i);
-
                 }
-
-
             }
             catch (Exception e)
             {

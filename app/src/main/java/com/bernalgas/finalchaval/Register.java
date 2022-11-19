@@ -38,26 +38,20 @@ import java.util.Calendar;
 //import com.google.volley.*;
 
 public class Register extends AppCompatActivity {
-    EditText user, pass, repass, email, nation, date;
+    EditText user, pass, repass, email, nation, date, lastname, firstname;
     Button register;
     // DatePicker date;
     // dbStopJumper db;
     Spinner nation1;
     TextView login;
     DatePickerDialog picker;
+    String ENDPOINT = "https://kfreeze-api.herokuapp.com/users";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         //https://www.youtube.com/watch?v=7aRn2Ch7Cs0
-        user = findViewById(R.id.tf_chooseEmail);
-        pass = findViewById(R.id.tf_mousePassword);
-        repass = findViewById(R.id.tf_registerRepass);
-        email = findViewById(R.id.tf_registerMail);
-        nation1 = findViewById(R.id.tf_registerOrigin1);
-        date = findViewById(R.id.dp_birthDate);
-        register = findViewById(R.id.btn_mouseBtn);
-        login = findViewById(R.id.tv_alreadyHaveAcc);
+        startEverything();
         //db = new dbStopJumper(this);
         date.setInputType(InputType.TYPE_NULL);
         date.setOnClickListener(new View.OnClickListener() {
@@ -76,14 +70,6 @@ public class Register extends AppCompatActivity {
                     }
                 }, year, month, day);
                 picker.show();
-                /*btnGet = findViewById(R.id.button1);
-                btnGet.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        String str = "Selected date = " + eText.getText();
-                        tvw.setText(str);
-                    }
-                });*/
             }
         });
         register.setOnClickListener(new View.OnClickListener(){
@@ -95,84 +81,30 @@ public class Register extends AppCompatActivity {
                 String e = email.getText().toString().trim();
                 String n = nation1.getSelectedItem().toString().trim();
                 String d = date.getText().toString().trim();
+                String fn = firstname.getText().toString().trim();
+                String ln = lastname.getText().toString().trim();
                 if(TextUtils.isEmpty(u) || TextUtils.isEmpty(p) ||
                         TextUtils.isEmpty(e) || TextUtils.isEmpty(n) ||
-                        TextUtils.isEmpty(d) || TextUtils.isEmpty(rp)){
+                        TextUtils.isEmpty(d) || TextUtils.isEmpty(rp) ||
+                        TextUtils.isEmpty(fn) || TextUtils.isEmpty(ln)
+                ){
                     Toast.makeText(Register.this,
                             "Todos los campos deben estar llenos",
                             Toast.LENGTH_SHORT).show();
                 }else{
-                    String endpoint = "https://kfreeze-api.herokuapp.com/users";
-                    String[] credentials = {u, p, e, n, d, endpoint};
+                    String[] credentials = {u, p, e, n, d, fn, ln, ENDPOINT};
                     System.out.println(u);
                     System.out.println(p);
                     System.out.println(e);
                     System.out.println(n);
                     System.out.println(d);
+                    System.out.println(fn);
+                    System.out.println(ln);
                     System.out.println(Arrays.toString(credentials));
-                    //String test = "{\n 'user': '" + u + "',\n 'email':'"+e+"',\n'password': '" + p + "',\n 'birthdate':'" + d + "',\n'nationality': '" + n + "'\n}";
-                    //System.out.println(test);
 
                     API api = new API();
                     api.execute(credentials);
-                    /*RegisterRequest registerRequest = new RegisterRequest();
-                    registerRequest.setUsername(u);
-                    registerRequest.setPassword(p);
-                    registerRequest.setEmail(e);
-                    registerRequest.setPlaceOfBirth(n);
-                    registerRequest.setBirthDate(d);
-                    User(registerRequest);
-                     */
-                    /*Retrofit retrofit = new Retrofit.Builder().baseUrl("https://kfreeze-api.herokuapp.com")
-                            .addConverterFactory(GsonConverterFactory.create()).build();
-                    OurRetrofit ourRetrofit = retrofit.create(OurRetrofit.class);
-                    OurDataSet ourDataSet = new OurDataSet(u,p,d,n,e);
-                    Call<OurDataSet> call = ourRetrofit.PostData(ourDataSet);
-                    call.enqueue(new Callback<OurDataSet>() {
-                        @Override
-                        public void onResponse(Call<OurDataSet> call, Response<OurDataSet> response) {
-                            String msgImon = response.body().getJson().getMsg();
-                            Toast.makeText(Register.this, msgImon, Toast.LENGTH_SHORT).show();
-                        }
 
-                        @Override
-                        public void onFailure(Call<OurDataSet> call, Throwable t) {
-                            Toast.makeText(Register.this, "Calaqueo rey", Toast.LENGTH_SHORT).show();
-                        }
-                    })*/
-                    /*try {
-                        URL url = new URL("https://kfreeze-api.herokuapp.com/users");
-                        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                        conn.setRequestMethod("POST");
-                        conn.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
-                        conn.setRequestProperty("Accept", "application/json");
-                        conn.setDoOutput(true);
-                        conn.setDoInput(true);
-
-                        JSONObject json = new JSONObject();
-                        json.put("birthdate:",d);
-                        json.put("email:",e);
-                        json.put("nationality:",n);
-                        json.put("password:", p);
-                        json.put("username;", u);
-                        Log.i("JSON", json.toString());
-                        DataOutputStream os = new DataOutputStream(conn.getOutputStream());
-                        os.writeBytes(json.toString());
-                        os.flush();
-                        os.close();
-                        //https://alecks.net/login.zip
-
-                        Log.i("STATUS", String.valueOf(conn.getResponseCode()));
-                        Log.i("MSG", conn.getResponseMessage());
-                        Toast.makeText(Register.this, "parece que al cien", Toast.LENGTH_SHORT);
-                        conn.disconnect();
-                    } catch (MalformedURLException ex) {
-                        ex.printStackTrace();
-                    } catch (IOException | JSONException ioException ) {
-                        ioException.printStackTrace();
-                    }
-
-                     */
                 }
 
             }
@@ -186,66 +118,7 @@ public class Register extends AppCompatActivity {
             }
         });
     }
-/*
-    public void User(RegisterRequest registerRequest){
-        Call<RegisterResponse> registerResponseCall = ApiClient.getService().User(registerRequest);
-        registerResponseCall.enqueue(new Callback<RegisterResponse>() {
-            @Override
-            public void onResponse(Call<RegisterResponse> call, Response<RegisterResponse> response) {
-                if (response.isSuccessful()){
-                    String msg = "Exito pa . . .";
-                    Toast.makeText(Register.this, msg, Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(Register.this, Login.class));
-                    finish();
-                }else{
-                    String msg = "An error occurred please try again leiter";
-                    Toast.makeText(Register.this, msg, Toast.LENGTH_SHORT).show();
-                }
 
-            }
-
-            @Override
-            public void onFailure(Call<RegisterResponse> call, Throwable t) {
-                String msg = t.getLocalizedMessage();
-                Toast.makeText(Register.this, msg, Toast.LENGTH_LONG).show();
-            }
-        });
-    }/*
-    public JSONObject register(String e, String u,String p,String d,String n){
-        JSONObject registerJson = null;
-        try {
-            JSONObject jObject = new JSONObject();
-            JSONObject pObject = new JSONObject();
-
-            jObject.put("user", u);
-            jObject.put("email", e);
-            jObject.put("password", p);
-            jObject.put("birthdate", d);
-            jObject.put("nationality", n);
-
-            registerJson = jObject;
-            Log.d("json", registerJson.toString());
-        }catch (JSONException ex){
-            ex.printStackTrace();
-        }
-        return registerJson;
-    }
-    public void apiCall(JSONObject jsonObject){
-        String url = "https://kfreeze-api.herokuapp.com/users";
-        JsonObjectRequest
-                jsonObjectRequest = new JsonObjectRequest(
-                        Request.Method.POST,
-                url, jsonObject, new Response,Listener
-        )
-    }*/
-    //String payload = "\"{\\\"user\\\":\\\"" + u + "\\\",\\\"email\\\":\\\"" + e + "\\\",\\\"password\\\":\\\"" + p + "\\\",\\\"birthdate\\\":\\\""+ d +"\\\",\\\"nationality\\\":\\\"" + n + "\\\"}\"";
-//
-//String u = cred[0];
-//        String p = cred[1];
-//        String e = cred[2];
-//        String n = cred[3];
-//        String d = cred[4];
-//        String Endpoint = cred[4];
 private class API extends AsyncTask<String, String, String>
 {
     @Override
@@ -257,7 +130,9 @@ private class API extends AsyncTask<String, String, String>
         String e = cred[2];
         String n = cred[3];
         String d = cred[4];
-        String endpoint = cred[5];
+        String fn = cred[5];
+        String ln = cred[6];
+        String endpoint = cred[7];
         try
         {
             URL url = new URL(endpoint);
@@ -276,10 +151,10 @@ private class API extends AsyncTask<String, String, String>
             json.put("username", u);
             String payload = json.toString();
             //String payload = "{\"user\":\"%u\",\"email\":\"+e+\",\"password\":\"+p+\",\"birthdate\":\"+d+\",\"nationality\":\"+n+\"}";
-            String test ="{\n   \"user\" : \""+u+"\",\n   \"password\" : \""+p+"\",\n   \"email\" : \""+e+"\",\n   \"nationality\" : \""+n+"\",\n   \"birthdate\" : \""+d+"\"\n}";
+            String test ="{\n   \"user\" : \""+u+"\",\n   \"password\" : \""+p+"\",\n   \"email\" : \""+e+"\",\n   \"nationality\" : \""+n+"\",\n   \"birthdate\" : \""+d+"\"\n,\n   \"firstName\" : \""+fn+"\"\n,\n   \"lastName\" : \""+ln+"\"\n}";
             System.out.println(test);
 
-            User ru = new User(u,e,p,d,n);
+            User ru = new User(u,e,p,d,n,fn,ln);
             Gson g = new Gson();
             String testGston = g.toJson(ru);
             System.out.println(testGston);
@@ -343,5 +218,17 @@ private class API extends AsyncTask<String, String, String>
             e.printStackTrace();
         }
     }
+}
+private void startEverything(){
+    user = findViewById(R.id.tf_chooseEmail);
+    pass = findViewById(R.id.tf_mousePassword);
+    repass = findViewById(R.id.tf_registerRepass);
+    email = findViewById(R.id.tf_registerMail);
+    nation1 = findViewById(R.id.tf_registerOrigin1);
+    date = findViewById(R.id.dp_birthDate);
+    register = findViewById(R.id.btn_mouseBtn);
+    firstname = findViewById(R.id.tf_firstName);
+    lastname = findViewById(R.id.tf_lastName);
+    login = findViewById(R.id.tv_alreadyHaveAcc);
 }
 }

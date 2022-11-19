@@ -1,41 +1,54 @@
 package com.bernalgas.finalchaval;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.location.Location;
 import android.media.AudioAttributes;
 import android.media.AudioManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.gson.Gson;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class postLogin extends AppCompatActivity {
     //LoginResponse loginResponse;
-    TextView u, e, n, b, ut;
-    FloatingActionButton noti,logout,edit, delete, admin, menu;
+    TextView u, e, n, b, ut, fn, ln;
+    FloatingActionButton noti,logout,edit, delete, admin, menu, location;
     NotificationManagerCompat notificationManagerCompat;
     Notification notification;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
     Boolean flag = true;
+    private FusedLocationProviderClient mFusedLocationClient;
+    private int MY_PERMISSION_READ_CONTACTS;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +66,8 @@ public class postLogin extends AppCompatActivity {
         User user = new Gson().fromJson(usr,User.class);
         System.out.println(user.getEmail());
         startEverything(user);
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+
         //boolean flag = true;
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,6 +80,7 @@ public class postLogin extends AppCompatActivity {
                         edit.setVisibility(View.VISIBLE);
                         delete.setVisibility(View.VISIBLE);
                         admin.setVisibility(View.VISIBLE);
+                        location.setVisibility(View.VISIBLE);
                         logout.setVisibility(View.VISIBLE);
                     }else if(user.getUserType().contains("Regular")){
                         logout.setVisibility(View.VISIBLE);
@@ -77,6 +93,7 @@ public class postLogin extends AppCompatActivity {
                         edit.setVisibility(View.INVISIBLE);
                         delete.setVisibility(View.INVISIBLE);
                         admin.setVisibility(View.INVISIBLE);
+                        location.setVisibility(View.INVISIBLE);
                         logout.setVisibility(View.INVISIBLE);
                     }else if(user.getUserType().contains("Regular")){
                         logout.setVisibility(View.INVISIBLE);
@@ -119,27 +136,30 @@ public class postLogin extends AppCompatActivity {
                 editor.putString("birthdate","");
                 editor.putString("nationality","");
                 editor.putString("userType", "");
+                editor.putString("firstName", "");
+                editor.putString("lastName", "");
                 editor.putBoolean("CHECKED", false);
                 editor.commit();
                 finish();
             }
         });
 
-        String tittle = "Titulo belico de notificacion";
-        String subject = "sujeto de la noti";
-        String body = "Cuerpo de la noti";
 
         noti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                //notificationManagerCompat.notify(1, notification);
-
                 createNotification();
             }
         });
+        location.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-        };
+                Intent i = new Intent(getApplicationContext(), MapsActivity.class);
+                startActivity(i);
+            }
+        });
+    };
     private void startEverything(User user){
 
         u = findViewById(R.id.tv_pUsername);
@@ -147,6 +167,8 @@ public class postLogin extends AppCompatActivity {
         n = findViewById(R.id.tv_pNationality);
         b = findViewById(R.id.tv_pBirthdate);
         ut = findViewById(R.id.tv_pUserType);
+        fn = findViewById(R.id.tv_pFirst);
+        ln = findViewById(R.id.tv_pLast);
 
         // floating action button
         menu = findViewById(R.id.fab_menu);
@@ -155,12 +177,15 @@ public class postLogin extends AppCompatActivity {
         edit = findViewById(R.id.fab_edit);
         delete = findViewById(R.id.fab_delete);
         admin = findViewById(R.id.fab_admin);
+        location = findViewById(R.id.fab_location);
 
         u.setText(user.getUsername());
         e.setText(user.getEmail());
         n.setText(user.getNationality());
         b.setText(user.getBirthdate());
         ut.setText(user.getUserType());
+        fn.setText(user.getFirstName());
+        ln.setText(user.getLastName());
     }
     private void createNotification(){
         String id = "My_channel_id_01";
@@ -185,8 +210,6 @@ public class postLogin extends AppCompatActivity {
                 manager.createNotificationChannel(channel);
             }
         }
-        // relleno del indio
-        // Intent notificationIntent = new Intent(this.)
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this,id)
                 .setSmallIcon(R.mipmap.ic_gosh_foreground)
                 .setContentTitle("Notificacion Belica")
@@ -202,20 +225,17 @@ public class postLogin extends AppCompatActivity {
     }
     public static Bitmap drawableToBitmap (Drawable drawable) {
         Bitmap bitmap = null;
-
         if (drawable instanceof BitmapDrawable) {
             BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
             if(bitmapDrawable.getBitmap() != null) {
                 return bitmapDrawable.getBitmap();
             }
         }
-
         if(drawable.getIntrinsicWidth() <= 0 || drawable.getIntrinsicHeight() <= 0) {
             bitmap = Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888); // Single color bitmap will be created of 1x1 pixel
         } else {
             bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), Bitmap.Config.ARGB_8888);
         }
-
         Canvas canvas = new Canvas(bitmap);
         drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
         drawable.draw(canvas);

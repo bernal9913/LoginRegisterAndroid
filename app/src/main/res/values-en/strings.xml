@@ -31,4 +31,6 @@
     <string name="tf_confirmEmail">Confirm Email</string>
     <string name="tv_modLogo">Change password</string>
     <string name="btn_mod">Change</string>
+    <string name="tf_fn">First Name</string>
+    <string name="tf_ln">Last Name</string>
 </resources>

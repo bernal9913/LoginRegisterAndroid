@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "885372921957",
+    "project_id": "kfreezon-d9519",
+    "storage_bucket": "kfreezon-d9519.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:885372921957:android:14ffe34547ee7a7eecfe8c",
+        "android_client_info": {
+          "package_name": "com.bernalgas.finalchaval"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "885372921957-0tu92nfn102m671j5suveum0lfms947j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHHmnH4iH9uXo56_3QKFfFOGXFK2SIxCg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "885372921957-0tu92nfn102m671j5suveum0lfms947j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

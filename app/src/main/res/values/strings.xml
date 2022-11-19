@@ -2,6 +2,8 @@
     <string name="app_name" translatable="false">Kfreezon</string>
     <string name="btn_register">Registrarse</string>
     <string name="tf_user_name">Nombre de usuario</string>
+    <string name="tf_fn">Nombre</string>
+    <string name="tf_ln">Apellido</string>
     <string name="tf_password">Contraseña</string>
     <string name="tf_email">Email</string>
     <string name="tf_birthDate">Fecha de nacimiento</string>
@@ -36,7 +38,7 @@
     <string name="tf_confirmEmail">Confirmar Email</string>
     <string name="tv_modLogo">Cambiar contraseña</string>
     <string name="btn_mod">Cambiar</string>
-
+    <string name="tv_notf" translatable="false">Contacte al admin para registrar datos</string>
 
 
     <string-array name="countries_array">
@@ -283,4 +285,5 @@
         <item>Zambia</item>
         <item>Zimbabwe</item>
     </string-array>
+    <string name="title_activity_maps">MapsActivity</string>
 </resources>
