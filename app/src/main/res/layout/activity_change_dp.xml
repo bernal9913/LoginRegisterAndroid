@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ChangeDP">
+
+    <TextView
+        android:id="@+id/tv_changeDp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
+        android:fontFamily="@font/sfuibold"
+        android:text="@string/tv_pick"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv_profile"
+        android:layout_width="210dp"
+        android:layout_height="235dp"
+        android:layout_marginTop="52dp"
+        android:background="@drawable/input_bg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_changeDp"
+        app:srcCompat="@drawable/ic_person" />
+
+    <Button
+        android:id="@+id/btn_pick"
+        android:layout_width="163dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="36dp"
+        android:fontFamily="@font/sfuibold"
+        android:text="@string/btn_choosedp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_profile" />
+
+    <Button
+        android:id="@+id/btn_savedp"
+        android:layout_width="164dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="13dp"
+        android:fontFamily="@font/sfuibold"
+        android:text="@string/btn_savedp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_pick" />
+</androidx.constraintlayout.widget.ConstraintLayout>

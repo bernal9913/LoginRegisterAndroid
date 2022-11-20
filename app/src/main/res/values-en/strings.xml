@@ -33,4 +33,9 @@
     <string name="btn_mod">Change</string>
     <string name="tf_fn">First Name</string>
     <string name="tf_ln">Last Name</string>
+    <string name="tv_pick">Change display picture</string>
+    <string name="btn_choosedp">Pick image</string>
+    <string name="btn_savedp">Save image</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="tf_confirmpass">Confirm password</string>
 </resources>

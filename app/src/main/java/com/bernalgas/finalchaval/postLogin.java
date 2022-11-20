@@ -1,5 +1,6 @@
 package com.bernalgas.finalchaval;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
@@ -16,6 +17,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.ImageDecoder;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
@@ -26,6 +28,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,8 +41,13 @@ import com.google.gson.Gson;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+
 public class postLogin extends AppCompatActivity {
     //LoginResponse loginResponse;
+    private static final int REQUEST_IMAGE_GET = 1;
+    private static final int SELECT_IMAGE = 100;
     TextView u, e, n, b, ut, fn, ln;
     FloatingActionButton noti,logout,edit, delete, admin, menu, location;
     NotificationManagerCompat notificationManagerCompat;
@@ -47,8 +55,12 @@ public class postLogin extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
     Boolean flag = true;
+    Boolean hasPicture = false;
+    String USER;
+    dbStopJumper db;
     private FusedLocationProviderClient mFusedLocationClient;
     private int MY_PERMISSION_READ_CONTACTS;
+    ImageView dp;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +80,14 @@ public class postLogin extends AppCompatActivity {
         startEverything(user);
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
+        USER = sharedPreferences.getString("username","");
+        db = new dbStopJumper(this);
+        hasPicture = db.checkPhoto(USER);
+        System.out.println("check photo: " + hasPicture);
+        if(hasPicture){
+            Bitmap tmp = db.getPhoto(USER);
+            dp.setImageBitmap(tmp);
+        }
         //boolean flag = true;
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -144,6 +164,20 @@ public class postLogin extends AppCompatActivity {
             }
         });
 
+        dp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                System.out.println("boton miado");
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setType("image/*");
+                if (intent.resolveActivity(getPackageManager()) != null) {
+                    startActivityForResult(intent, REQUEST_IMAGE_GET);
+                }else{
+                    startActivityForResult(intent, REQUEST_IMAGE_GET);
+                }
+            }
+        });
 
         noti.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -169,7 +203,7 @@ public class postLogin extends AppCompatActivity {
         ut = findViewById(R.id.tv_pUserType);
         fn = findViewById(R.id.tv_pFirst);
         ln = findViewById(R.id.tv_pLast);
-
+        dp = findViewById(R.id.iv_dp);
         // floating action button
         menu = findViewById(R.id.fab_menu);
         noti = findViewById(R.id.fab_notification);
@@ -240,5 +274,68 @@ public class postLogin extends AppCompatActivity {
         drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
         drawable.draw(canvas);
         return bitmap;
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == SELECT_IMAGE && null != data){
+            String user = sharedPreferences.getString("username","");
+            Uri uri = data.getData();
+            /*Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), uri);
+            ByteArrayOutputStream byteArray = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArray);
+            byte[] img = byteArray.toByteArray();
+            boolean insr = dbStopJumper.insertData(user, img);
+            if(insr){
+                Toast.makeText(ChangeDP.this, "Foto cambiada", Toast.LENGTH_SHORT).show();
+            }else{
+                Toast.makeText(ChangeDP.this, "Algo anda mal", Toast.LENGTH_SHORT).show();
+            }
+            profileImageView.setImageBitmap(dbStopJumper.getIMG(user));
+
+             */
+            dp.setImageURI(uri);
+        }
+        if (requestCode == REQUEST_IMAGE_GET && resultCode == RESULT_OK) {
+            //Bitmap thumbnail = data.getParcelable("data");
+            if (data != null) {
+                Uri fullPhotoUri = data.getData();
+                //profileImageView.setImageURI(fullPhotoUri);
+                Bitmap bitmap = null;
+
+                Bitmap bmp = bitmap;
+                try {
+                    bitmap = ImageDecoder.decodeBitmap(ImageDecoder.createSource(getContentResolver(),fullPhotoUri));
+                    dp.setImageBitmap(bitmap);
+                    if(hasPicture){
+
+                        Toast.makeText(this, "Modificando imagen", Toast.LENGTH_SHORT).show();
+                        //ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                        //bmp.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                        //byte[] b = baos.toByteArray();
+                        db.updatePhoto(USER,bitmap);
+                    }else{
+                        System.out.println("agregando img");
+                        //ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                        //bmp.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                        //byte[] b = baos.toByteArray();
+
+                        //boolean checku = dbHelper.checkPhoto(USER);
+
+                        //String encodedImage = Base64.getEncoder().encodeToString(b);
+                        //System.out.println(encodedImage);
+                        System.out.println(USER);
+                        db.addPhoto(USER, bitmap);
+                    }
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+
+                //Bitmap bitmap = MediaStore.Images.Media.getBitmap(this,getContentResolver(), fullPhotoUri);
+            }
+        }
     }
 }

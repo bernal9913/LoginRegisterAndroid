@@ -39,6 +39,10 @@
     <string name="tv_modLogo">Cambiar contraseña</string>
     <string name="btn_mod">Cambiar</string>
     <string name="tv_notf" translatable="false">Contacte al admin para registrar datos</string>
+    <string name="tv_pick">Cambiar foto de perfil</string>
+    <string name="btn_choosedp">Elegir imagen</string>
+    <string name="btn_savedp">Guardar imagen</string>
+    <string name="tf_confirmpass">Confirmar Contraseña</string>
 
 
     <string-array name="countries_array">
@@ -285,5 +289,5 @@
         <item>Zambia</item>
         <item>Zimbabwe</item>
     </string-array>
-    <string name="title_activity_maps">MapsActivity</string>
+    <string name="title_activity_maps">Mapa</string>
 </resources>

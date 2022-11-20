@@ -25,6 +25,7 @@
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="24dp"
         android:elevation="10dp"
+        android:fontFamily="@font/sfuibold"
         android:outlineAmbientShadowColor="#200808"
         android:outlineProvider="background"
         android:outlineSpotShadowColor="#000000"
@@ -39,26 +40,28 @@
         app:layout_constraintVertical_bias="0.121" />
 
     <TextView
-        android:id="@+id/tv_pBirthdate"
+        android:id="@+id/tv_pFirst"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="@string/tv_pBirthdate"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/sfuiregular"
+        android:text="@string/tv_notf"
         android:textColor="@color/bg_background"
-        app:layout_constraintEnd_toEndOf="@+id/tv_pEmail"
-        app:layout_constraintHorizontal_bias="0.478"
-        app:layout_constraintStart_toStartOf="@+id/tv_pEmail"
-        app:layout_constraintTop_toBottomOf="@+id/tv_pEmail" />
+        app:layout_constraintEnd_toEndOf="@+id/tv_pUserType"
+        app:layout_constraintHorizontal_bias="0.468"
+        app:layout_constraintStart_toStartOf="@+id/tv_pUserType"
+        app:layout_constraintTop_toBottomOf="@+id/tv_pUserType" />
 
     <TextView
         android:id="@+id/tv_pUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/sfuiregular"
         android:text="@string/tv_pUsername"
         android:textColor="@color/bg_background"
         app:layout_constraintEnd_toEndOf="@+id/textView"
-        app:layout_constraintHorizontal_bias="0.892"
+        app:layout_constraintHorizontal_bias="0.791"
         app:layout_constraintStart_toStartOf="@+id/textView"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -66,60 +69,66 @@
         android:id="@+id/tv_pEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/sfuiregular"
         android:text="@string/tv_pEmail"
         android:textColor="@color/bg_background"
         app:layout_constraintEnd_toEndOf="@+id/tv_pUsername"
-        app:layout_constraintHorizontal_bias="0.517"
+        app:layout_constraintHorizontal_bias="0.484"
         app:layout_constraintStart_toStartOf="@+id/tv_pUsername"
         app:layout_constraintTop_toBottomOf="@+id/tv_pUsername" />
+
+    <TextView
+        android:id="@+id/tv_pBirthdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/sfuiregular"
+        android:text="@string/tv_pBirthdate"
+        android:textColor="@color/bg_background"
+        app:layout_constraintEnd_toEndOf="@+id/tv_pEmail"
+        app:layout_constraintHorizontal_bias="0.346"
+        app:layout_constraintStart_toStartOf="@+id/tv_pEmail"
+        app:layout_constraintTop_toBottomOf="@+id/tv_pEmail" />
 
     <TextView
         android:id="@+id/tv_pUserType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/sfuiregular"
         android:text="@string/tv_pUserType"
         android:textColor="@color/bg_background"
         app:layout_constraintEnd_toEndOf="@+id/tv_pNationality"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/tv_pNationality"
         app:layout_constraintTop_toBottomOf="@+id/tv_pNationality" />
-
-    <TextView
-        android:id="@+id/tv_pFirst"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="@string/tv_notf"
-        android:textColor="@color/bg_background"
-        app:layout_constraintEnd_toEndOf="@+id/tv_pUserType"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="@+id/tv_pUserType"
-        app:layout_constraintTop_toBottomOf="@+id/tv_pUserType" />
-
-    <TextView
-        android:id="@+id/tv_pLast"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="@string/tv_notf"
-        android:textColor="@color/bg_background"
-        app:layout_constraintEnd_toEndOf="@+id/tv_pFirst"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/tv_pFirst"
-        app:layout_constraintTop_toBottomOf="@+id/tv_pFirst" />
 
     <TextView
         android:id="@+id/tv_pNationality"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="8dp"
         android:text="@string/tv_pNationality"
+        android:fontFamily="@font/sfuiregular"
         android:textColor="@color/bg_background"
         app:layout_constraintEnd_toEndOf="@+id/tv_pBirthdate"
-        app:layout_constraintHorizontal_bias="0.555"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/tv_pBirthdate"
         app:layout_constraintTop_toBottomOf="@+id/tv_pBirthdate" />
+
+    <TextView
+        android:id="@+id/tv_pLast"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/sfuiregular"
+        android:text="@string/tv_notf"
+        android:textColor="@color/bg_background"
+        app:layout_constraintEnd_toEndOf="@+id/tv_pFirst"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/tv_pFirst"
+        app:layout_constraintTop_toBottomOf="@+id/tv_pFirst" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab_menu"
@@ -218,25 +227,10 @@
         android:id="@+id/iv_dp"
         android:layout_width="120dp"
         android:layout_height="120dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="132dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="172dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/profile" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab_dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="96dp"
-        android:layout_marginEnd="60dp"
-        android:clickable="true"
-        app:backgroundTint="@color/morado_lp"
-        app:layout_constraintEnd_toEndOf="@+id/iv_dp"
-        app:layout_constraintTop_toTopOf="@+id/iv_dp"
-        app:srcCompat="@drawable/ic_add" />
-
-    <!--
-    TODO: username, email, birthdate and nationality
-    -->
 </androidx.constraintlayout.widget.ConstraintLayout>
