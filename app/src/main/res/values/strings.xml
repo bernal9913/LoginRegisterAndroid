@@ -43,6 +43,7 @@
     <string name="btn_choosedp">Elegir imagen</string>
     <string name="btn_savedp">Guardar imagen</string>
     <string name="tf_confirmpass">Confirmar Contraseña</string>
+    <string name="API_GEO" translatable="false">AIzaSyAEtDC47R4wB2rDBkiYp3Q_sUqg79uE3AI</string>
 
 
     <string-array name="countries_array">
@@ -290,4 +291,5 @@
         <item>Zimbabwe</item>
     </string-array>
     <string name="title_activity_maps">Mapa</string>
+    <string name="title_activity_maps_chilo">MapsChilo</string>
 </resources>

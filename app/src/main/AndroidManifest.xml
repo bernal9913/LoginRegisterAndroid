@@ -17,13 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FinalChaval"
         tools:targetApi="31">
-        <activity
-            android:name=".ChangeDP"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
+
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 
@@ -37,8 +31,15 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="YOUR_API_KEY" />
+            android:value="AIzaSyAEtDC47R4wB2rDBkiYp3Q_sUqg79uE3AI" />
 
+        <activity
+            android:name=".MapsChilo"
+            android:exported="false"
+            android:label="@string/title_activity_maps_chilo" />
+        <activity
+            android:name=".ChangeDP"
+            android:exported="false"></activity>
         <activity
             android:name=".MapsActivity"
             android:exported="false"
