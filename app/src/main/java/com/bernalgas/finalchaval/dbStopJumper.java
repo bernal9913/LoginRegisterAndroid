@@ -47,10 +47,7 @@ public class dbStopJumper extends SQLiteOpenHelper {
         values.put("image", imageInBytes);
         System.out.println("add put");
         long check = db.insert("tableimage",null, values);
-        if(check ==-1) return false;
-        else{
-            return true;
-        }
+        return check != -1;
     }
     public boolean updatePhoto(String user, Bitmap bm){
         boolean ei = false;
@@ -62,20 +59,13 @@ public class dbStopJumper extends SQLiteOpenHelper {
         values.put("image", imageInBytes);
         String []args = new String[]{user};
         long check = db.update("tableimage",values,"name=?",args);
-        if(check ==-1) return false;
-        else{
-            return true;
-        }
+        return check != -1;
     }
     // para ver si el mecoboy existe
     public Boolean checkPhoto(String user){
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery("select * from tableimage where name =?", new String[]{user});
-        if(c.getCount()>0){
-            return true;
-        }else{
-            return false;
-        }
+        return c.getCount() > 0;
     }
     public Bitmap getPhoto(String user){
         SQLiteDatabase db = this.getReadableDatabase();

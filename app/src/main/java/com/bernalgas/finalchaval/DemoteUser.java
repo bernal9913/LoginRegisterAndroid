@@ -23,7 +23,7 @@ import java.util.Arrays;
 public class DemoteUser extends AppCompatActivity {
     EditText em;
     Button demote;
-    String ENDPOINT = "https://kfreeze-api.herokuapp.com/users/demote";
+    String ENDPOINT = "https://192.168.31.236:5000/users/demote";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,7 +87,7 @@ public class DemoteUser extends AppCompatActivity {
                     String respLine = null;
                     while ((respLine = br.readLine()) != null)
                     {
-                        resp.append(respLine.toString());
+                        resp.append(respLine);
                     }
                     respuesta = resp.toString();
                 }

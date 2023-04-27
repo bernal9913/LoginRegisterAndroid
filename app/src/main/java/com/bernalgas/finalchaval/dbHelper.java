@@ -52,10 +52,6 @@ public class dbHelper extends SQLiteOpenHelper {
         //Cursor c = db.query(TABLE_USER, columns, sel, selArgs, null, null, null);
         Cursor c = db.rawQuery("SELECT * FROM tableimage WHERE name =? ", new String[]{user});
         System.out.println(c.getCount());
-        if(c.getCount() > 0){
-            return true;
-        }else{
-            return false;
-        }
+        return c.getCount() > 0;
     }
 }

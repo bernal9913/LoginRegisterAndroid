@@ -25,7 +25,7 @@ public class MousekeTools extends AppCompatActivity {
     EditText em, pa;
     Button b, demote;
 
-    String ENDPOINT = "https://kfreeze-api.herokuapp.com/users/mouseketools";
+    String ENDPOINT = "https://192.168.31.236:5000/users/mouseketools";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -110,7 +110,7 @@ public class MousekeTools extends AppCompatActivity {
                     String respLine = null;
                     while ((respLine = br.readLine()) != null)
                     {
-                        resp.append(respLine.toString());
+                        resp.append(respLine);
                     }
                     respuesta = resp.toString();
                 }

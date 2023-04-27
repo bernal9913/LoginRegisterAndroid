@@ -42,7 +42,7 @@ public class Login extends AppCompatActivity {
     CheckBox sesion;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
-    String ENDPOINT = "https://kfreeze-api.herokuapp.com/log_user";
+    String ENDPOINT = "https://192.168.31.236:5000/log_user";
 
     // rest in sushon belico la base de datos stopJumper
     // dbStopJumper db;
@@ -147,7 +147,7 @@ public class Login extends AppCompatActivity {
                     String respLine = null;
                     while ((respLine = br.readLine()) != null)
                     {
-                        resp.append(respLine.toString());
+                        resp.append(respLine);
                     }
                     respuesta = resp.toString();
                 }
@@ -186,11 +186,7 @@ public class Login extends AppCompatActivity {
                     Toast.makeText(Login.this, "Bienvenido: " + user.getUsername(),Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(getApplicationContext(), postLogin.class);
 
-                    if (sesion.isChecked()){
-                        editor.putBoolean("CHECKED", true);
-                    }else{
-                        editor.putBoolean("CHECKED", false);
-                    }
+                    editor.putBoolean("CHECKED", sesion.isChecked());
                     editor.putString("username", user.getUsername());
                     editor.putString("email", user.getEmail());
                     editor.putString("password", user.getPassword());

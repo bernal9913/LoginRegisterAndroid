@@ -24,8 +24,8 @@ public class calendarioPerron extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendario_perron);
-        tvw = (TextView) findViewById(R.id.textView1);
-        eText = (EditText) findViewById(R.id.editText1);
+        tvw = findViewById(R.id.textView1);
+        eText = findViewById(R.id.editText1);
         eText.setInputType(InputType.TYPE_NULL);
         eText.setOnClickListener( new View.OnClickListener(){
             @Override

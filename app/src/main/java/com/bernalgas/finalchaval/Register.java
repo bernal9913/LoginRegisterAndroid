@@ -45,7 +45,7 @@ public class Register extends AppCompatActivity {
     Spinner nation1;
     TextView login;
     DatePickerDialog picker;
-    String ENDPOINT = "https://kfreeze-api.herokuapp.com/users";
+    String ENDPOINT = "https://192.168.31.236:5000/users";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -171,7 +171,7 @@ private class API extends AsyncTask<String, String, String>
                 String respLine = null;
                 while ((respLine = br.readLine()) != null)
                 {
-                    resp.append(respLine.toString());
+                    resp.append(respLine);
                 }
                 respuesta = resp.toString();
 

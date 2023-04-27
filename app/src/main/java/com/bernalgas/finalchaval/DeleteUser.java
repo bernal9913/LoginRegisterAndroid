@@ -23,7 +23,7 @@ import java.util.Arrays;
 public class DeleteUser extends AppCompatActivity {
     EditText em1, em2;
     Button b;
-    String ENDPOINT = "https://kfreeze-api.herokuapp.com/users/";
+    String ENDPOINT = "https://192.168.31.236:5000/users/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,7 +91,7 @@ public class DeleteUser extends AppCompatActivity {
                     String respLine = null;
                     while ((respLine = br.readLine()) != null)
                     {
-                        resp.append(respLine.toString());
+                        resp.append(respLine);
                     }
                     respuesta = resp.toString();
                 }

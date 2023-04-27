@@ -51,7 +51,7 @@ public class ChangeDP extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     private static final int SELECT_IMAGE = 100;
     private static final int REQUEST_IMAGE_GET = 1;
-    private boolean hasImage = false;
+    private final boolean hasImage = false;
     dbStopJumper db;
     Bitmap imageDB;
     String USER;

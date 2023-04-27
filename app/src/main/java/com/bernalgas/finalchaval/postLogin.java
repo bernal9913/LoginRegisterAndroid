@@ -200,7 +200,8 @@ public class postLogin extends AppCompatActivity {
 
             }
         });
-    };
+    }
+
     private void startEverything(User user){
 
         u = findViewById(R.id.tv_pUsername);

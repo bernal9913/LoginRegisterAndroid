@@ -24,7 +24,7 @@ import java.util.Arrays;
 public class ModUser extends AppCompatActivity {
     EditText pass, em;
     Button bt;
-    String ENDPOINT = "https://kfreeze-api.herokuapp.com/users";
+    String ENDPOINT = "https://192.168.31.236:5000/users";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,7 +96,7 @@ public class ModUser extends AppCompatActivity {
                     String respLine = null;
                     while ((respLine = br.readLine()) != null)
                     {
-                        resp.append(respLine.toString());
+                        resp.append(respLine);
                     }
                     respuesta = resp.toString();
                 }
